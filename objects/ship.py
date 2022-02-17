@@ -8,9 +8,9 @@ class Ship:
         self.y = y
         self.img = pygame.transform.scale(img, (64, 64))
         self.velocity = 5
+        self.bullets = []
+    
 
-    def draw(self, screen):
-        screen.blit(self.img, (self.x, self.y))
 
     def move(self, direction):
         if direction == "up":
@@ -21,3 +21,5 @@ class Ship:
             self.x -= self.velocity
         elif direction == "right":
             self.x += self.velocity
+
+    

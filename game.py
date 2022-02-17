@@ -34,7 +34,12 @@ def gameloop():
             ship.move("up")
         if keys[pygame.K_SPACE]:  # left
             ship.shoot()
-        ship.draw(screen)
+        
+        tracker = 0
+        tracker += clock.get_time()
+        if tracker > 400:
+            tracker = 0
+        ship.update(screen, tracker)
         pygame.display.update()
 
 
