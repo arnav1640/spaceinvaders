@@ -7,7 +7,7 @@ class Ship:
         self.x = x
         self.y = y
         self.img = pygame.transform.scale(img, (64, 64))
-        self.velocity = 5
+        self.velocity = 1
         self.bullets = []
     
 
