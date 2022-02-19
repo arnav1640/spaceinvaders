@@ -23,7 +23,7 @@ class Defender(Ship):
         self.cooldown_fire()
         if self.cooldown == 0:
             self.bullets.append(Bullet(self.x, self.y))
-            self.cooldown = 1
+            self.cooldown += 1
 
     def update_bullets(self, screen, enemies):
         self.check_collisions(enemies, screen)

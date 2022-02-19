@@ -14,11 +14,13 @@ background = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("SPACE INVADERS")
-ship = Defender(200, 200)
+ship = Defender(500, 700)
 enemies = Enemies(
-    [Invader(100, 100), Invader(200, 100), Invader(300, 100), Invader(400, 100), Invader(500, 100), Invader(600, 100), Invader(700, 100),
+    [Invader(100, 100), Invader(200, 100), Invader(300, 100), Invader(400, 100), Invader(500, 100), Invader(600, 100),
+     Invader(700, 100),
      Invader(150, 170), Invader(250, 170), Invader(350, 170), Invader(450, 170), Invader(550, 170), Invader(650, 170),
-     Invader(100, 240), Invader(200, 240), Invader(300, 240), Invader(400, 240), Invader(500, 240), Invader(600, 240), Invader(700, 240)])
+     Invader(100, 240), Invader(200, 240), Invader(300, 240), Invader(400, 240), Invader(500, 240), Invader(600, 240),
+     Invader(700, 240)])
 ship.enemies = enemies.invaders
 
 pygame.font.init()
@@ -38,13 +40,19 @@ def menu():
         pygame.display.update()
 
 
+
+
+
 def gameloop():
     clock = pygame.time.Clock()
     active = True
-
+    elapsed_time = 0
+    state = 1
     while active:
         clock.tick(264)
         screen.blit(background, (0, 0))
+        timepast = clock.tick()
+        elapsed_time += timepast
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 active = False
@@ -59,9 +67,17 @@ def gameloop():
             ship.move("up")
         if keys[pygame.K_SPACE] or keys[pygame.K_RETURN]:  # left
             ship.shoot()
+        if elapsed_time > 200:
+            elapsed_time = 0
+            # for enemyship in enemies.invaders:
+            #     enemyship.shift()
+
+
 
         ship.update(screen, enemies.invaders)
         enemies.update(screen)
+        enemycooldown = 300
+
         pygame.display.update()
         if len(enemies.invaders) == 0:
             break
