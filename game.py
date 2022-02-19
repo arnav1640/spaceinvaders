@@ -60,7 +60,7 @@ def gameloop():
         if keys[pygame.K_SPACE] or keys[pygame.K_RETURN]:  # left
             ship.shoot()
 
-        ship.update(screen)
+        ship.update(screen, enemies.invaders)
         enemies.update(screen)
         pygame.display.update()
         if len(enemies.invaders) == 0:

@@ -25,27 +25,26 @@ class Defender(Ship):
             self.bullets.append(Bullet(self.x, self.y))
             self.cooldown = 1
 
-    def update_bullets(self, screen):
-        self.check_collisions()
+    def update_bullets(self, screen, enemies):
+        self.check_collisions(enemies, screen)
         for bullet in self.bullets:
             bullet.update(screen)
 
-    def check_collisions(self):
+    def check_collisions(self, enemies, screen):
         if len(self.enemies) > 0:
-            for enemy in self.enemies:
+            for enemy in enemies:
                 for bullet in self.bullets:
                     if bullet.collision(enemy):
                         print(f"bullet collided with ship at f{bullet.x, bullet.y}")
                         self.bullets.remove(bullet)
-                        enemy.destroy()
-                        # self.enemies.remove(enemy)
+                        enemies.remove(enemy)
                     elif bullet.offscreen():
                         self.bullets.remove(bullet)
 
         for bullet in self.bullets:
             bullet.update(self.screen)
 
-    def update(self, screen):
+    def update(self, screen, enemies):
         self.screen = screen
         screen.blit(self.img, (self.x, self.y))
-        self.update_bullets(screen)
+        self.update_bullets(screen, enemies)

@@ -16,5 +16,6 @@ class Invader(Ship):
             screen.blit(death_animation, (self.x, self.y))
 
     def destroy(self):
-        self.state == "dead"
+        self.state = "dead"
+
 
