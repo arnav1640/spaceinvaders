@@ -1,3 +1,15 @@
+
+########################################
+#        -Space Invader-               #
+#   Author: Arnav Gaddam version 1     #
+#                                      #
+#   description: OOP Space Invaders    #
+# with pygame                          #
+#                                      #
+#                                      #
+########################################
+
+
 import pygame
 import pygame.time
 
